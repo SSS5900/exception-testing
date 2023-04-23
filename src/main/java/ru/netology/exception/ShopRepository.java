@@ -25,49 +25,63 @@ public class ShopRepository {
      *
      * @param product — добавляемый товар
      */
+//    public void add(Product product) {
+//        products = addToArray(products, product);
+//    }
+
+
     public void add(Product product) {
-        products = addToArray(products, product);
-    }
 
-    public Product[] findAll() {
-        return products;
-    }
-
-    // Этот способ мы рассматривали в теории в теме про композицию
-    public void remove(int id) {
-        Product[] tmp = new Product[products.length - 1];
-        int copyToIndex = 0;
-        for (Product product : products) {
-            if (product.getId() != id) {
-                tmp[copyToIndex] = product;
-                copyToIndex++;
+            if (findById(product.id) != null) {
+                throw new AlreadyExistsException(
+                        "Элемент с ID: " + product.id + " уже присутсвует в списке."
+                );
             }
-        }
-        products = tmp;
+            products = addToArray(products, product);
+
+
     }
 
-    // Метод поиска продукта по Id
-    public Product findById(int id) {
-        for (Product product : products) {
-            if (product.id == id) {
-                return product;
+
+        public Product[] findAll () {
+            return products;
+        }
+
+        // Этот способ мы рассматривали в теории в теме про композицию
+        public void remove ( int id){
+            Product[] tmp = new Product[products.length - 1];
+            int copyToIndex = 0;
+            for (Product product : products) {
+                if (product.getId() != id) {
+                    tmp[copyToIndex] = product;
+                    copyToIndex++;
+                }
             }
+            products = tmp;
         }
-        return null;
-    }
+
+        // Метод поиска продукта по Id
+        public Product findById ( int id){
+            for (Product product : products) {
+                if (product.id == id) {
+                    return product;
+                }
+            }
+            return null;
+        }
 
 
-    public void removeById(int id) {
+        public void removeById ( int id){
 //        for (Product product : products) {
             if (findById(id) == null) {
                 throw new NotFoundException(
-                        "Элемент с ID : " + id + " не найден."
+                        "Элемент с ID: " + id + " не найден."
                 );
             }
             remove(id);
 //        }
 
-    }
+        }
 
 //    public void removeById(int id) {
 ////        for (Product product : products) {
@@ -85,4 +99,4 @@ public class ShopRepository {
 //        return products;
 //    }
 
-}
+    }

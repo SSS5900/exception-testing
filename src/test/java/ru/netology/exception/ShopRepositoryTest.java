@@ -38,6 +38,8 @@ public class ShopRepositoryTest {
 
         int id = 40;
 
+//        repo.removeById(id);
+
         Assertions.assertThrows(NotFoundException.class, () -> {
             repo.removeById(id);
         });
@@ -59,6 +61,41 @@ public class ShopRepositoryTest {
         Assertions.assertArrayEquals(expected, actual);
 
 
+    }
+//_________________________________________________________________________________________________________________
+    @Test
+
+    public void addWithPresenceCheckId(){
+        ShopRepository repo = new ShopRepository();
+        repo.add(product1);
+        repo.add(product2);
+        repo.add(product3);
+
+        Product product = new Product(40, "", 2_000);
+        repo.add(product);
+
+        Product[] expected = {product1, product2, product3, product};
+        Product[] actual = repo.findAll();
+        Assertions.assertArrayEquals(expected, actual);
+
+
+    }
+//__________________________________________________________________________________________________________________
+    @Test
+
+    public void addWithPresenceCheckExistsId() {
+        ShopRepository repo = new ShopRepository();
+        repo.add(product1);
+        repo.add(product2);
+        repo.add(product3);
+
+        Product product = new Product(30, "", 3_000);
+
+//        repo.add(product);
+
+        Assertions.assertThrows(AlreadyExistsException.class, () -> {
+            repo.add(product);
+        });
     }
 
 }
