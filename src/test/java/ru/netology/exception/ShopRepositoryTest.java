@@ -9,23 +9,7 @@ public class ShopRepositoryTest {
     Product product2 = new Product(20, "", 2_000);
     Product product3 = new Product(30, "", 2_000);
 
-//    @Test
-//    public void findById() {
-//        ShopRepository repo = new ShopRepository();
-//        repo.add(product1);
-//        repo.add(product2);
-//        repo.add(product3);
-//
-//        int id = 10;
-//
-//
-//
-//        Product expected = product1;
-//        Product actual = repo.findById(id);
-//        Assertions.assertEquals(expected, actual);
-//        System.out.println(repo.findById(id));
-//
-//    }
+
 
 //    ________________________________________________________________________________________________________
     @Test
@@ -97,5 +81,24 @@ public class ShopRepositoryTest {
             repo.add(product);
         });
     }
+
+////        @Test
+////    public void findById() {
+////        ShopRepository repo = new ShopRepository();
+////        repo.add(product1);
+////        repo.add(product2);
+////        repo.add(product3);
+////
+////        int id = 10;
+////
+////
+////
+////        Product expected = product1;
+////        Product actual = repo.findById(id);
+////        Assertions.assertEquals(expected, actual);
+//////        System.out.println(repo.findById(id));
+//
+//    }
+
 
 }
